@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="./globalStyles.css">
+  <link rel="stylesheet" href="./src/styles/homePage.css">
+
+  <title>Kenzie Empresas</title>
+</head>
+<body>
+
+  <div class="borderLine">
+    <div class="containerDiv">
+      <header class="hContainer">
+        <h1 class="title"><span class="logo"></span>Kenzie Empresas</h1>
+        <div class="redirect">
+          <button class="backToLogin defaultBtn whiteBtn">Login</button>
+          <button class="backToRegister defaultBtn blueBtn">Cadastro</button>
+        </div>
+      </header>
+    </div>
+  </div>
+
+  <div class="containerDiv">
+    <main class="mContainer">
+      <div class="container left">
+        <img class="bannerImg" src="./src/assets/img/companyImg.png" alt="Imagem de uma sala onde três homens estão reunidos em uma mesa com papéis">
+      </div>
+    <div class="container right">
+      <select id="departmentSelect" name="department">
+        <option value="" selected disabled>Selecionar Setor</option>
+      </select>
+      <ul id="companyList">
+        <li class="company">
+          <h2 class="companyName">Nome da empresa</h2>
+          <span class="companyOpenning">Abertura da empresa</span>
+          <span class="companyDepartment">Setor</span>
+        </li>
+      </ul>
+    </div>
+    </main>
+
+  </div>
+
+</body>
+</html>

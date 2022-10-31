@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../../../globalStyles.css">
+  <link rel="stylesheet" href="../../../src/styles/generalStyles.css">
+  <link rel="stylesheet" href="../../styles/account.css">
+
+  <title>Kenzie Empresas - Cadastro</title>
+</head>
+<body>
+
+  <div class="borderLine">
+    <div class="containerDiv">
+      <header class="hContainer">
+        <h1 class="title"><span class="logo"></span>Kenzie Empresas</h1>
+        <div class="redirect">
+          <button class="backToLogin defaultBtn whiteBtn">Home</button>
+          <button class="backToRegister defaultBtn blueBtn">Cadastro</button>
+        </div>
+      </header>
+    </div>
+  </div>
+
+  <div class="backImg">
+    <div class="containerDiv main">
+      <main class="mContainer">
+        <form class="formContainer">
+          <h2 class="formTitle">Cadastre-se</h2>
+          <input id="registerUserName" class="inputData" type="text" required placeholder="Seu nome">
+          <input id="registerEmail" class="inputData" type="email" required placeholder="Seu email">
+          <input id="registerPassword" class="inputData" type="password" required placeholder="Sua senha">
+
+          <select id="expLevel" class="inputData" name="expLevel">
+            <option class="no-level" value="" selected disabled>Nível Profissional</option>
+            <option class="level" value="no-level">Nenhum</option>
+            <option class="level" value="junior">Júnior</option>
+            <option class="level" value="pleno">Pleno</option>
+            <option class="level" value="senior">Sênior</option>
+          </select>
+
+          <button class="submitBtn blueBtn" type="submit">Cadastre-se</button>
+          <button class="redirectBtn whiteBtn">Retornar</button>
+        </form>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

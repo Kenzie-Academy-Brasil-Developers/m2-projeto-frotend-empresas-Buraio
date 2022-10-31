@@ -1,0 +1,29 @@
+body {
+  overflow: hidden;
+}
+
+.main{
+  height: 100vh;
+}
+
+.backImg {
+  height: 100%;
+  background-image: url('../assets/img/companyImg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.mContainer {
+  height: 100%;
+  padding-top: 145px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.formContainer p {
+  margin-top: 10px;
+  text-align: center;
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-1);
+}
