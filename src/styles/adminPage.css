@@ -1,0 +1,31 @@
+.adminHeader {
+  margin: 90px 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+#departments, #userList {
+  height: 385px;
+  padding: 34px 56px;
+  background-color: var(--color-6);
+  display: flex;
+  justify-content: space-between;
+  gap:28px;
+  flex-wrap: wrap;
+}
+
+.mContainer > h2 {
+  margin: 70px 0 16px;
+  text-align: center;
+}
+
+.main {
+  padding-bottom: 90px;
+}
+
+.department, .user {
+  width: 490px;
+  height: 200px;
+  background-color: var(--color-2);
+}

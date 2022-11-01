@@ -16,9 +16,9 @@
     <div class="containerDiv">
       <header class="hContainer">
         <h1 class="title"><span class="logo"></span>Kenzie Empresas</h1>
-        <div class="redirect">
-          <button class="backToLogin defaultBtn whiteBtn">Login</button>
-          <button class="backToRegister defaultBtn blueBtn">Cadastro</button>
+        <div class="redirectDiv">
+          <button class="backToLogin defaultBtn whiteBtn redirect">Login</button>
+          <button class="backToRegister defaultBtn blueBtn redirect">Cadastro</button>
         </div>
       </header>
     </div>
@@ -30,20 +30,20 @@
         <img class="bannerImg" src="./src/assets/img/companyImg.png" alt="Imagem de uma sala onde três homens estão reunidos em uma mesa com papéis">
       </div>
     <div class="container right">
-      <select id="departmentSelect" name="department">
-        <option value="" selected disabled>Selecionar Setor</option>
+      <select id="sectorSelect" name="sector">
+        <option value="" selected>Selecionar Setor</option>
       </select>
       <ul id="companyList">
         <li class="company">
           <h2 class="companyName">Nome da empresa</h2>
-          <span class="companyOpenning">Abertura da empresa</span>
-          <span class="companyDepartment">Setor</span>
+          <span class="companyOpening">Abertura da empresa</span>
+          <span class="companySector">Setor</span>
         </li>
       </ul>
     </div>
     </main>
 
   </div>
-
+  <script type="module" src="./src/pages/homePage/index.js"></script>
 </body>
 </html>
