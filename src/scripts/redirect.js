@@ -21,7 +21,7 @@ function redirectHeaderBtn(obj) {
         if (localStorage.getItem('token')) {
           localStorage.removeItem('token');
         }
-        location.assign(obj.homePage);
+        location.replace(obj.homePage);
       }
     })
   })

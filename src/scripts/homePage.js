@@ -1,4 +1,4 @@
-import { getAllCompanies, getAllSectors, getCompaniesBySector } from "./homePageApi.js";
+import { getAllSectors, getCompaniesBySector } from "./homePageApi.js";
 
 function companyCard(obj) {
 
@@ -21,22 +21,15 @@ function companyCard(obj) {
 
 }
 
-const companyArr = await getAllCompanies();
-async function renderCompanyCards(arr) {
+function renderCompanyCards(list, arr) {
 
-  const list = document.querySelector('#companyList')
   list.innerHTML = '';
-
   arr.forEach(company => {
     const card = companyCard(company);
     list.appendChild(card);
   })
 
 }
-
-renderCompanyCards(companyArr)
-
-const selectInput = document.querySelector('#sectorSelect');
 
 async function sectorSelect(input) {
 
@@ -46,20 +39,18 @@ async function sectorSelect(input) {
     const sectorOption = document.createElement('option');
     sectorOption.innerText = sector.description;
 
-    selectInput.appendChild(sectorOption);
+    input.appendChild(sectorOption);
 
   });
 }
 
-sectorSelect()
+function filterCompaniesBySector(input, mainArr) {
 
-function filterCompaniesBySector(input) {
-
-  selectInput.addEventListener('change', async (e) => {
+  input.addEventListener('change', async (e) => {
 
     const selectValue = e.target.value;
     if (selectValue === '') {
-      renderCompanyCards(companyArr);
+      renderCompanyCards(mainArr);
     }
     else {
       const filteredCompanyArr = await getCompaniesBySector(selectValue);
@@ -68,4 +59,4 @@ function filterCompaniesBySector(input) {
   })
 }
 
-filterCompaniesBySector()
+export { renderCompanyCards, sectorSelect, filterCompaniesBySector }
