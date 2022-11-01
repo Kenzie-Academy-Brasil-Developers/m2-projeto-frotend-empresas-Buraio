@@ -1,5 +1,6 @@
+import { headers } from "../pages/homePage/index.js";
+
 const baseUrl = 'http://localhost:6278';
-const headers = { 'Content-Type': 'application/json' }
 const noTokenEndpoints = {
   register:    '/auth/register',
   login:       '/auth/login',
@@ -16,17 +17,55 @@ async function getAllCompanies() {
       method: 'GET',
       headers: headers
     })
-    console.log(request)
+
     if (request.ok) {
       const response = await request.json();
-      console.log(response)
       return response;
     }
   }
   catch (err) {
     console.log(err);
   }
-
 }
 
-export { getAllCompanies };
+async function getAllSectors() {
+
+  try {
+
+    const request = await fetch(`${baseUrl}${noTokenEndpoints.sectors}`, {
+      method: 'GET',
+      headers: headers
+    })
+
+    if (request.ok) {
+      const response = await request.json();
+      return response;
+    }
+  }
+  catch (err) {
+    console.log(err);
+  }
+}
+
+async function getCompaniesBySector(sector) {
+
+  try {
+
+    const request = await fetch(`${baseUrl}${noTokenEndpoints.companies}/${sector}`, {
+      method: 'GET',
+      headers: headers
+    })
+
+    if (request.ok) {
+
+      const response = await request.json();
+      return response;
+
+    }
+  }
+  catch (err) {
+    console.log(err);
+  }
+}
+
+export { getAllCompanies, getAllSectors, getCompaniesBySector };

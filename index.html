@@ -16,9 +16,9 @@
     <div class="containerDiv">
       <header class="hContainer">
         <h1 class="title"><span class="logo"></span>Kenzie Empresas</h1>
-        <div class="redirect">
-          <button class="backToLogin defaultBtn whiteBtn">Login</button>
-          <button class="backToRegister defaultBtn blueBtn">Cadastro</button>
+        <div class="redirectDiv">
+          <button class="backToLogin defaultBtn whiteBtn redirect">Login</button>
+          <button class="backToRegister defaultBtn blueBtn redirect">Cadastro</button>
         </div>
       </header>
     </div>
@@ -31,7 +31,7 @@
       </div>
     <div class="container right">
       <select id="sectorSelect" name="sector">
-        <option value="" selected disabled>Selecionar Setor</option>
+        <option value="" selected>Selecionar Setor</option>
       </select>
       <ul id="companyList">
         <li class="company">
@@ -45,5 +45,6 @@
 
   </div>
   <script type="module" src="./src/pages/homePage/index.js"></script>
+  <script type="module" src="./src/scripts/homePage.js"></script>
 </body>
 </html>
