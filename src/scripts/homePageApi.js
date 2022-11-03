@@ -68,4 +68,4 @@ async function getCompaniesBySector(sector) {
   }
 }
 
-export { getAllCompanies, getAllSectors, getCompaniesBySector };
+export { baseUrl, noTokenEndpoints, getAllCompanies, getAllSectors, getCompaniesBySector };
