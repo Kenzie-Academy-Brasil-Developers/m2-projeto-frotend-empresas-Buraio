@@ -1,5 +1,5 @@
-import { baseUrl, noTokenEndpoints } from './homePageApi.js';
-import { headers } from '../pages/homePage/index.js';
+import { baseUrl, noTokenEndpoints } from '../homePage/homePageApi.js';
+import { headers } from '../../pages/homePage/index.js';
 
 async function registerWithApi(body) {
 

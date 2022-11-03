@@ -1,11 +1,12 @@
-import { getAllDepartments } from './adminDepartmentApi.js';
-import { getAllUsers } from './adminUsersApi.js';
+import { getAllDepartments } from './adminDepartment.js';
+import { getAllUsers } from './adminUsers.js';
 
 const token = JSON.parse(localStorage.getItem('token'));
+const userList       = document.querySelector('#userList');
+const departmentList = document.querySelector('#departments');
+
 async function getUserData() {
 
-  const userList = document.querySelector('#userList');
-  const departmentList = document.querySelector('#departments');
   if (token) {
     const userArr = await getAllUsers(token.token)
     const departmentArr = await getAllDepartments(token.token);
@@ -110,6 +111,4 @@ function renderDepartmentCards(list, arr) {
   })
 }
 
-// departmentCard();
-
-export { getUserData };
+export { token, departmentList, getUserData, renderDepartmentCards };

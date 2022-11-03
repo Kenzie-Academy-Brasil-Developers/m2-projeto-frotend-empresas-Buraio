@@ -1,5 +1,5 @@
-import { headers } from "../pages/homePage/index.js";
-import { baseUrl } from "./homePageApi.js";
+import { headers } from "../../pages/homePage/index.js";
+import { baseUrl } from "../homePage/homePageApi.js";
 
 async function getAllUsers(token) {
 

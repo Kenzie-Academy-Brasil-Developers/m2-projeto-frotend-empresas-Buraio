@@ -1,4 +1,4 @@
-import { registerWithApi } from './accountApi.js';
+import { registerWithApi } from './adminPage/accountApi.js';
 
 const form = document.querySelector('.formContainer');
 const inputs = document.querySelectorAll('.inputData');

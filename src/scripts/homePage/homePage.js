@@ -1,3 +1,4 @@
+import { companyList } from '../../pages/homePage/index.js';
 import { getAllSectors, getCompaniesBySector } from "./homePageApi.js";
 
 function companyCard(obj) {
@@ -28,7 +29,6 @@ function renderCards(list, arr) {
     const card = companyCard(company);
     list.appendChild(card);
   })
-
 }
 
 async function sectorSelect(input) {
@@ -54,7 +54,7 @@ function filterCompaniesBySector(input, mainArr) {
     }
     else {
       const filteredCompanyArr = await getCompaniesBySector(selectValue);
-      renderCards(filteredCompanyArr);
+      renderCards(companyList, filteredCompanyArr);
     }
   })
 }

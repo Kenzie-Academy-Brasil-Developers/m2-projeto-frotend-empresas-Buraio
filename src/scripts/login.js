@@ -1,5 +1,5 @@
 import { form, inputs } from "./register.js";
-import { loginWithApi, verifyAdmin } from './accountApi.js';
+import { loginWithApi, verifyAdmin } from './adminPage/accountApi.js';
 
 export function loginUser() {
 
