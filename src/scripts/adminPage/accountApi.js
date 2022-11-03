@@ -30,7 +30,6 @@ async function loginWithApi(body) {
     })
 
     const response = await request.json();
-    console.log(response)
     return response;
   }
   catch (err) {
@@ -50,16 +49,12 @@ async function verifyAdmin(token) {
       }
     })
 
-
     const response = await request.json();
-    console.log(response)
     return response;
-
   }
   catch (err) {
     console.log(err)
   }
-
 }
 
 export { registerWithApi, loginWithApi, verifyAdmin };

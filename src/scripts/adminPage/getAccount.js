@@ -34,8 +34,8 @@ function adminUserCards(obj) {
     userExpLevel.classList.add('userExp');
     companyName.classList.add('companyName');
     actionsDiv.classList.add('actionsDiv');
-    actionIconPencil.classList.add('action');
-    actionIconTrash.classList.add('action');
+    actionIconPencil.classList.add('action', 'editUser');
+    actionIconTrash.classList.add('action', 'deleteUser');
 
     userName.innerText = obj.username;
     userExpLevel.innerText = obj.professional_level;
@@ -81,9 +81,9 @@ function departmentCard(obj) {
   departmentDesc.classList.add('departmentDesc');
   companyName.classList.add('companyName');
   actionsDiv.classList.add('actionsDiv');
-  actionIconEye.classList.add('action');
-  actionIconPencil.classList.add('action');
-  actionIconTrash.classList.add('action');
+  actionIconEye.classList.add('action', 'visualize');
+  actionIconPencil.classList.add('action', 'editDepartment');
+  actionIconTrash.classList.add('action', 'deleteDepartment');
 
   departmentName.innerText = obj.name;
   departmentDesc.innerText = obj.description;
