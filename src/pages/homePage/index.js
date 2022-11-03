@@ -1,5 +1,5 @@
 import { getAllCompanies } from "../../scripts/homePageApi.js";
-import { renderCompanyCards, sectorSelect, filterCompaniesBySector } from "../../scripts/homePage.js";
+import { sectorSelect, filterCompaniesBySector } from "../../scripts/homePage.js";
 import { redirectHeaderBtn } from "../../scripts/redirect.js";
 
 const headers = { 'Content-Type': 'application/json' }

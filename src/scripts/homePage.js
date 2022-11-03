@@ -21,7 +21,7 @@ function companyCard(obj) {
 
 }
 
-function renderCompanyCards(list, arr) {
+function renderCards(list, arr) {
 
   list.innerHTML = '';
   arr.forEach(company => {
@@ -50,13 +50,13 @@ function filterCompaniesBySector(input, mainArr) {
 
     const selectValue = e.target.value;
     if (selectValue === '') {
-      renderCompanyCards(mainArr);
+      renderCards(mainArr);
     }
     else {
       const filteredCompanyArr = await getCompaniesBySector(selectValue);
-      renderCompanyCards(filteredCompanyArr);
+      renderCards(filteredCompanyArr);
     }
   })
 }
 
-export { renderCompanyCards, sectorSelect, filterCompaniesBySector }
+export { renderCards, sectorSelect, filterCompaniesBySector }
