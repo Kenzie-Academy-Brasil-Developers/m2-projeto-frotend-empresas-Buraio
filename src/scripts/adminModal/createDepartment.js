@@ -1,6 +1,6 @@
 import { dynamicModal } from "../adminModal.js";
 
-export async function newDepartment() {
+export async function createDepartment() {
 
   const createBtn = document.querySelector('.newDepartment');
   createBtn.addEventListener('click', () => {

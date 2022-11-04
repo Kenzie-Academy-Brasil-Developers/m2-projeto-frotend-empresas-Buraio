@@ -1,6 +1,6 @@
-import { newDepartment } from './adminModal/createDepartment.js';
+import { createDepartment } from './adminModal/createDepartment.js';
 import { deleteDepartment } from './adminModal/deleteDepartment.js';
-import { editDepartment } from './adminModal/editDepartment.js';
+import { updateDepartment } from './adminModal/editDepartment.js';
 import { readDepartment } from './adminModal/readDepartment.js';
 
 function dynamicModal() {
@@ -20,8 +20,7 @@ function dynamicModal() {
   closeModalBtn.src = '../../assets/icons/xIcon.svg'
 
   closeModalBtn.addEventListener('click', () => {
-    divContainer.innerHTML = '';
-    divBack.classList.add('hidden');
+    divBack.remove();
   })
 
   return divContainer;
@@ -29,12 +28,9 @@ function dynamicModal() {
 
 async function crudCallFunction() {
 
-  newDepartment();
-
+  createDepartment();
   readDepartment();
-
-  editDepartment();
-
+  updateDepartment();
   deleteDepartment();
 
 }

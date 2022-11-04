@@ -1,12 +1,10 @@
 import { dynamicModal } from "../adminModal.js";
 
-export async function editDepartment() {
+export async function updateDepartment() {
 
   setTimeout(() => {
 
     const editBtnArray = document.querySelectorAll('.editDepartment');
-    console.log(editBtnArray)
-
     editBtnArray.forEach(button => {
 
       button.addEventListener('click', () => {

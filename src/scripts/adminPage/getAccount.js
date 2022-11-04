@@ -27,7 +27,7 @@ function adminUserCards(obj) {
     const actionIconPencil = document.createElement('img');
     const actionIconTrash  = document.createElement('img');
 
-    userCard.setAttribute('data-uuid', obj.uuid);
+    actionsDiv.setAttribute('data-uuid', obj.uuid);
 
     userCard.classList.add('user');
     userName.classList.add('userName');
@@ -74,7 +74,7 @@ function departmentCard(obj) {
   const actionIconPencil = document.createElement('img');
   const actionIconTrash  = document.createElement('img');
 
-  card.setAttribute('data-uuid', obj.uuid);
+  actionsDiv.setAttribute('data-uuid', obj.uuid);
 
   card.classList.add('department');
   departmentName.classList.add('departmentName');

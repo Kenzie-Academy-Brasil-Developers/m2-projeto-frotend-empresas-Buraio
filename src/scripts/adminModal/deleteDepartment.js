@@ -1,4 +1,6 @@
 import { dynamicModal } from "../adminModal.js";
+import { apiDelete } from "../adminModalApi/deleteDepartment.js";
+import { token } from "../adminPage/getAccount.js";
 
 export async function deleteDepartment() {
 
@@ -7,8 +9,19 @@ export async function deleteDepartment() {
     deleteBtnArray.forEach(button => {
       button.addEventListener('click', () => {
 
+        const parentId = button.parentElement.getAttribute('data-uuid');
+        console.log(parentId)
+
         const container = dynamicModal();
         deleteModal(container);
+        
+        const submitBtn = document.querySelector('.submitBtn');
+        const modalBack = document.querySelector('.divBack');
+
+        submitBtn.addEventListener('click', () => {
+          apiDelete(token.token, parentId);
+          modalBack.remove();
+        })
       })
     })
   }, 300)

@@ -1,6 +1,7 @@
 import { baseUrl } from "../homePage/homePageApi.js";
 import { headers, companyArr } from '../../pages/homePage/index.js'
 import { token, departmentList, renderDepartmentCards } from './getAccount.js';
+import { crudCallFunction } from "../adminModal.js";
 
 async function getAllDepartments(token) {
 
@@ -56,23 +57,18 @@ async function selectCompany(input) {
   });
 }
 
-function filterDepartmentByCompany(input, mainArr) {
+function filterDepartmentByCompany(input) {
 
   input.addEventListener('change', async () => {
 
     const companyId = input.value;
-    console.log(companyId);
-
     const filterArr = await getDepartmentsByCompany(token.token, companyId);
 
     if (filterArr) {
       renderDepartmentCards(departmentList, filterArr);
+      crudCallFunction();
     }
-
-    console.log(filterArr)
-
   })
-
 }
 
 filterDepartmentByCompany(select, companyArr)
