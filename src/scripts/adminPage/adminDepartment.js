@@ -75,4 +75,4 @@ filterDepartmentByCompany(select, companyArr)
 
 selectCompany(select);
 
-export { getAllDepartments };
+export { getAllDepartments, selectCompany };

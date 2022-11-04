@@ -1,4 +1,7 @@
 import { dynamicModal } from "../adminModal.js";
+import { apiCreate } from "../adminModalApi/createDepartment.js";
+import { selectCompany } from "../adminPage/adminDepartment.js";
+import { token } from "../adminPage/getAccount.js";
 
 export async function createDepartment() {
 
@@ -7,6 +10,33 @@ export async function createDepartment() {
 
     const container = dynamicModal();
     createModal(container);
+
+    const form = document.querySelector('.divContainer');
+    const modalBack = document.querySelector('.divBack');
+
+    const select = document.querySelector('#modalSelect');
+    selectCompany(select);
+
+    form.addEventListener('submit', (e) => {
+
+      e.preventDefault();
+
+      const name = document.querySelector('#departmentName');
+      const description = document.querySelector('#departmentDesc');
+
+      const userData = {
+        "name"         : `${name.value}`,
+        "description"  : `${description.value}`,
+        "company_uuid" : `${select.value}`
+      };
+
+      console.log(userData)
+
+      apiCreate(token.token, userData);
+
+      modalBack.remove();
+
+    })
   })
 }
 
@@ -24,6 +54,10 @@ function createModal(parent) {
   departmentDesc.classList.add('inputData');
   departmentCompany.classList.add('inputData');
   submitBtn.classList.add('submitBtn', 'blueBtn');
+
+  departmentName.id    = 'departmentName';
+  departmentDesc.id    = 'departmentDesc';
+  departmentCompany.id = 'modalSelect';
 
   modalHeading.innerText     = 'Criar departamento';
   departmentName.placeholder = 'Nome do departamento';
