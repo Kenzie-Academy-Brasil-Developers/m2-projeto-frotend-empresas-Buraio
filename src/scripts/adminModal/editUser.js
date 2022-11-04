@@ -1,4 +1,6 @@
 import { dynamicModal } from "../adminModal.js";
+import { apiEditUser } from "../adminModalApi/editUser.js";
+import { token } from "../adminPage/getAccount.js";
 
 export async function updateUser() {
 
@@ -10,6 +12,26 @@ export async function updateUser() {
       button.addEventListener('click', () => {
         const container = dynamicModal();
         updateModal(container);
+
+        const form = document.querySelector('.divContainer');
+        const typeSelect = document.querySelector('#typeSelect');
+        const expLevelSelect = document.querySelector('#expLevelSelect');
+
+        const parentId = button.parentElement.getAttribute('data-uuid');
+
+        console.log(parentId)
+        form.addEventListener('submit', (e) => {
+
+          e.preventDefault();
+
+          const userData = {};
+
+          userData.kind_of_work = typeSelect.value;
+          userData.professional_level = expLevelSelect.value;
+
+          apiEditUser(token.token, parentId, userData);
+
+        })
       })
     })
   }, 300)
@@ -19,9 +41,7 @@ function updateModal(parent) {
 
   const modalHeading      = document.createElement('h3');
   const typeOfWork        = document.createElement('select');
-  const noValueOptWorking = document.createElement('option');
   const userExpLevel      = document.createElement('select');
-  const noValueOptUserExp = document.createElement('option');
   const submitBtn         = document.createElement('button');
 
   modalHeading.classList.add('modalHeading');
@@ -32,12 +52,23 @@ function updateModal(parent) {
   typeOfWork.id = 'typeSelect';
   userExpLevel.id  = 'expLevelSelect';
 
-  noValueOptWorking.innerText = 'Selecionar modalidade de trabalho';
-  noValueOptUserExp.innerText = 'Selecionar nível profissional';
-  submitBtn.innerText         = 'Editar';
+  submitBtn.innerText = 'Editar';
 
-  typeOfWork.appendChild(noValueOptWorking);
-  userExpLevel.appendChild(noValueOptUserExp);
+  typeOfWork.insertAdjacentHTML('beforeend', `
+    <option value='' selected>Selecionar modalidade de trabalho</option>
+    <option value='presencial'>Presencial</option>
+    <option value='home office'>Home-Office</option>
+    <option value='hibrido'>Híbrido</option>
+  `)
+
+  userExpLevel.insertAdjacentHTML('beforeend', `
+    <option value="" selected>Nível Profissional</option>
+    <option value="estágio">Estágio</option>
+    <option value="júnior">Júnior</option>
+    <option value="pleno">Pleno</option>
+    <option value="sênior">Sênior</option>
+  `)
+
 
   parent.append(modalHeading, typeOfWork, userExpLevel, submitBtn);
 

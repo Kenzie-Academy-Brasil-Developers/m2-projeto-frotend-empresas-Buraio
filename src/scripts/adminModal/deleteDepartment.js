@@ -3,7 +3,7 @@ import { apiDelete } from "../adminModalApi/deleteDepartment.js";
 import { getAllDepartments } from "../adminPage/adminDepartment.js";
 import { token } from "../adminPage/getAccount.js";
 
-export async function deleteDepartment() {
+async function deleteDepartment() {
 
   setTimeout(() => {
     const deleteBtnArray = document.querySelectorAll('.deleteDepartment');
@@ -30,7 +30,7 @@ export async function deleteDepartment() {
   }, 300)
 }
 
-export function deleteModal(parent) {
+function deleteModal(parent) {
 
   const cautionHeading = document.createElement('h3');
   const confirmBtn     = document.createElement('button');
@@ -60,3 +60,5 @@ async function identifyDepartment(id) {
     }
   })
 }
+
+export { deleteDepartment, deleteModal }

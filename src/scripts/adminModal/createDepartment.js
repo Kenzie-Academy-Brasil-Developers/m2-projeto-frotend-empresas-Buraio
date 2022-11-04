@@ -30,10 +30,7 @@ export async function createDepartment() {
         "company_uuid" : `${select.value}`
       };
 
-      console.log(userData)
-
       apiCreate(token.token, userData);
-
       modalBack.remove();
 
     })
