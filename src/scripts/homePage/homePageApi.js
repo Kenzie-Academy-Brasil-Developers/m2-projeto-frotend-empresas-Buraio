@@ -1,4 +1,4 @@
-import { headers } from "../pages/homePage/index.js";
+import { headers } from "../../pages/homePage/index.js";
 
 const baseUrl = 'http://localhost:6278';
 const noTokenEndpoints = {

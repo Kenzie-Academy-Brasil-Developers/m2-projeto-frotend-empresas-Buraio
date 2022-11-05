@@ -1,3 +1,4 @@
+import { companyList } from '../../pages/homePage/index.js';
 import { getAllSectors, getCompaniesBySector } from "./homePageApi.js";
 
 function companyCard(obj) {
@@ -21,14 +22,13 @@ function companyCard(obj) {
 
 }
 
-function renderCompanyCards(list, arr) {
+function renderCards(list, arr) {
 
   list.innerHTML = '';
   arr.forEach(company => {
     const card = companyCard(company);
     list.appendChild(card);
   })
-
 }
 
 async function sectorSelect(input) {
@@ -50,13 +50,13 @@ function filterCompaniesBySector(input, mainArr) {
 
     const selectValue = e.target.value;
     if (selectValue === '') {
-      renderCompanyCards(mainArr);
+      renderCards(mainArr);
     }
     else {
       const filteredCompanyArr = await getCompaniesBySector(selectValue);
-      renderCompanyCards(filteredCompanyArr);
+      renderCards(companyList, filteredCompanyArr);
     }
   })
 }
 
-export { renderCompanyCards, sectorSelect, filterCompaniesBySector }
+export { renderCards, sectorSelect, filterCompaniesBySector }

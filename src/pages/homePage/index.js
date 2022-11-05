@@ -1,6 +1,6 @@
-import { getAllCompanies } from "../../scripts/homePageApi.js";
-import { renderCompanyCards, sectorSelect, filterCompaniesBySector } from "../../scripts/homePage.js";
-import { redirectHeaderBtn } from "../../scripts/redirect.js";
+import { getAllCompanies } from "../../scripts/homePage/homePageApi.js";
+import { sectorSelect, renderCards, filterCompaniesBySector } from "../../scripts/homePage/homePage.js";
+import { redirectHeaderBtn } from "../../scripts/homePage/redirect.js";
 
 const headers = { 'Content-Type': 'application/json' }
 const companyArr = await getAllCompanies();
@@ -15,9 +15,9 @@ const pageHref = {
 redirectHeaderBtn(pageHref);
 
 if (companyList) {
-  renderCompanyCards(companyList, companyArr);
+  renderCards(companyList, companyArr);
   sectorSelect(selectInput);
   filterCompaniesBySector(selectInput, companyArr);
 }
 
-export { headers, pageHref };
+export { headers, pageHref, companyList, companyArr };
