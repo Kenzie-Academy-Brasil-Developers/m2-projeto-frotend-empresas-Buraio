@@ -71,8 +71,4 @@ function filterDepartmentByCompany(input) {
   })
 }
 
-filterDepartmentByCompany(select, companyArr)
-
-selectCompany(select);
-
-export { getAllDepartments, selectCompany };
+export { getAllDepartments, select, filterDepartmentByCompany, selectCompany };

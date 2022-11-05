@@ -32,17 +32,14 @@ function readModal(parent) {
   departmentDesc.classList.add('departmentDesc');
   companyName.classList.add('companyName');
   inputDiv.classList.add('inputDiv');
+  userSelect.classList.add('inputData')
   hireBtn.classList.add('submitBtn', 'greenBtn');
 
   userSelect.id = 'userSelect';
   userList.id   = 'userList';
 
-  // departmentName.innerText = '' API
-  // departmentDesc.innerText = '' API
-  // companyName.innerText = '' API
   noValueOpt.innerText = 'Selecionar usuário';
   hireBtn.innerText = 'Contratar';
-
 
   infoDiv.append(departmentDesc, companyName);
   userSelect.appendChild(noValueOpt);
