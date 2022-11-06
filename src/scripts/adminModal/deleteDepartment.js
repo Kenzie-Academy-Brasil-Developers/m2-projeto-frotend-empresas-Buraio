@@ -2,6 +2,7 @@ import { dynamicModal } from "../adminModal.js";
 import { apiDelete } from "../adminModalApi/deleteDepartment.js";
 import { getAllDepartments } from "../adminPage/adminDepartment.js";
 import { validAdminToken } from "../../pages/adminPage/index.js";
+import { removeModal } from "./createDepartment.js";
 
 async function deleteDepartment() {
 
@@ -15,7 +16,6 @@ async function deleteDepartment() {
         const parentId = button.parentElement.getAttribute('data-uuid');
         const modalContainer = dynamicModal();
         deleteModal(modalContainer);
-        const modalBack = document.querySelector('.divBack');
 
         identifyDepartment(parentId);
 
@@ -24,7 +24,7 @@ async function deleteDepartment() {
           e.preventDefault();
 
           apiDelete(validAdminToken, parentId);
-          modalBack.remove();
+          removeModal(modalContainer);
         })
       })
     })

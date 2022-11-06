@@ -13,13 +13,12 @@ export async function updateUser() {
 
         const modalContainer = dynamicModal();
         updateModal(modalContainer);
+        const modalBack = document.querySelector('.divBack');
 
         const typeSelect = document.querySelector('#typeSelect');
         const expLevelSelect = document.querySelector('#expLevelSelect');
-
         const parentId = button.parentElement.getAttribute('data-uuid');
 
-        console.log(parentId)
         modalContainer.addEventListener('submit', (e) => {
 
           e.preventDefault();
@@ -28,7 +27,9 @@ export async function updateUser() {
           userData.kind_of_work = typeSelect.value;
           userData.professional_level = expLevelSelect.value;
 
-          apiEditUser(validAdminToken.token, parentId, userData);
+          apiEditUser(validAdminToken, parentId, userData);
+
+          modalBack.remove();
         })
       })
     })

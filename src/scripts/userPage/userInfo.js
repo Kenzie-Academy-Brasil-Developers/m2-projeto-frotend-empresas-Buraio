@@ -1,6 +1,7 @@
 import { editUserProfile } from "./getApi.js";
 import { dynamicModal } from "../adminModal.js";
 import { validUserToken, loggedUser } from "../../pages/userPage/index.js";
+import { removeModal } from "../adminModal/createDepartment.js";
 
 function userInfo() {
 
@@ -23,9 +24,7 @@ function userInfo() {
       editUserProfile(validUserToken, userDataBody);
       getUserInfo();
 
-      setTimeout(() => {
-        modalContainer.remove();
-      }, 500)
+      removeModal(modalContainer);
     })
   })
 }
@@ -79,12 +78,6 @@ const getUserInfo = async () => {
   if (workingTypeIsTrue) {
     workingType.innerText = loggedUser.kind_of_work;
   }
-}
-
-const removeModal = (element) => {
-  setTimeout(() => {
-    element.remove()
-  }, 500);
 }
 
 export { getUserInfo, userInfo };

@@ -3,7 +3,7 @@ import { apiDeleteUser } from "../adminModalApi/deleteUser.js";
 import { deleteModal } from "./deleteDepartment.js";
 import { validAdminToken } from "../../pages/adminPage/index.js";
 
-export async function deleteDepartment() {
+export async function deleteUser() {
 
   setTimeout(() => {
     const deleteBtnArray = document.querySelectorAll('.deleteUser');
@@ -24,6 +24,4 @@ export async function deleteDepartment() {
       })
     })
   }, 300)
-}
-
-deleteDepartment();
+};
