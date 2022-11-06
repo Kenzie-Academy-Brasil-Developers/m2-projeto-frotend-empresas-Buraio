@@ -9,62 +9,42 @@ const noTokenEndpoints = {
   verifyAdmin: '/auth/validate_user',
 }
 
-async function getAllCompanies() {
+const getAllCompanies = async () => {
 
-  try {
+  const request = await fetch(`${baseUrl}${noTokenEndpoints.companies}`, {
+    method: 'GET',
+    headers: headers
+  })
 
-    const request = await fetch(`${baseUrl}${noTokenEndpoints.companies}`, {
-      method: 'GET',
-      headers: headers
-    })
-
-    if (request.ok) {
-      const response = await request.json();
-      return response;
-    }
-  }
-  catch (err) {
-    console.log(err);
+  if (request.ok) {
+    const response = await request.json();
+    return response;
   }
 }
 
-async function getAllSectors() {
+const getAllSectors = async () => {
 
-  try {
+  const request = await fetch(`${baseUrl}${noTokenEndpoints.sectors}`, {
+    method: 'GET',
+    headers: headers
+  })
 
-    const request = await fetch(`${baseUrl}${noTokenEndpoints.sectors}`, {
-      method: 'GET',
-      headers: headers
-    })
-
-    if (request.ok) {
-      const response = await request.json();
-      return response;
-    }
-  }
-  catch (err) {
-    console.log(err);
+  if (request.ok) {
+    const response = await request.json();
+    return response;
   }
 }
 
-async function getCompaniesBySector(sector) {
+const getCompaniesBySector = async (sector) => {
 
-  try {
+  const request = await fetch(`${baseUrl}${noTokenEndpoints.companies}/${sector}`, {
+    method: 'GET',
+    headers: headers
+  })
 
-    const request = await fetch(`${baseUrl}${noTokenEndpoints.companies}/${sector}`, {
-      method: 'GET',
-      headers: headers
-    })
-
-    if (request.ok) {
-
-      const response = await request.json();
-      return response;
-
-    }
-  }
-  catch (err) {
-    console.log(err);
+  if (request.ok) {
+    const response = await request.json();
+    return response;
   }
 }
 

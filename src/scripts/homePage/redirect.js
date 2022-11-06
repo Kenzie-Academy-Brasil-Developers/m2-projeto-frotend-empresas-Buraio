@@ -27,4 +27,12 @@ function redirectHeaderBtn(obj) {
   })
 }
 
-export { redirectHeaderBtn };
+function validateToken() {
+
+  if (!localStorage.getItem('token')) {
+    location.replace('../../../index.html');
+  }
+  return JSON.parse(localStorage.getItem('token')).token;
+}
+
+export { redirectHeaderBtn, validateToken };

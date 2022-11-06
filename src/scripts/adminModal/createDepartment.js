@@ -1,38 +1,35 @@
 import { dynamicModal } from "../adminModal.js";
 import { apiCreate } from "../adminModalApi/createDepartment.js";
 import { selectCompany } from "../adminPage/adminDepartment.js";
-import { token } from "../adminPage/getAccount.js";
+import { validAdminToken } from "../../pages/adminPage/index.js";
 
 export async function createDepartment() {
 
-  const createBtn = document.querySelector('.newDepartment');
-  createBtn.addEventListener('click', () => {
+  const createNewDepartmentBtn = document.querySelector('.newDepartment');
+  createNewDepartmentBtn.addEventListener('click', () => {
 
-    const container = dynamicModal();
-    createModal(container);
-
-    const form = document.querySelector('.divContainer');
+    const modalContainer = dynamicModal();
+    createModal(modalContainer);
     const modalBack = document.querySelector('.divBack');
 
-    const select = document.querySelector('#modalSelect');
-    selectCompany(select);
+    const modalCompanySelect = document.querySelector('#modalSelect');
+    selectCompany(modalCompanySelect);
 
-    form.addEventListener('submit', (e) => {
+    modalContainer.addEventListener('submit', (e) => {
 
       e.preventDefault();
 
-      const name = document.querySelector('#departmentName');
-      const description = document.querySelector('#departmentDesc');
+      const departmentName = document.querySelector('#departmentName');
+      const departmentDesc = document.querySelector('#departmentDesc');
 
       const userData = {
-        "name"         : `${name.value}`,
-        "description"  : `${description.value}`,
-        "company_uuid" : `${select.value}`
+        "name"         : `${departmentName.value}`,
+        "description"  : `${departmentDesc.value}`,
+        "company_uuid" : `${modalCompanySelect.value}`
       };
 
-      apiCreate(token.token, userData);
+      apiCreate(validAdminToken, userData);
       modalBack.remove();
-
     })
   })
 }
