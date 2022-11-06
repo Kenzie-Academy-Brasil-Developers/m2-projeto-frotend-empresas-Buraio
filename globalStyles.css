@@ -58,6 +58,10 @@ body {
   overflow-y: auto;
 }
 
+.noScroll {
+  overflow-y: hidden;
+}
+
 /* Multiple styles */
 .title {
   font-size: var(--font-size-1);
