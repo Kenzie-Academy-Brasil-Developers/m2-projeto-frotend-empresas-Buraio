@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="../../../globalStyles.css">
   <link rel="stylesheet" href="../../../src/styles/generalStyles.css">
   <link rel="stylesheet" href="../../styles/account.css">
+  <link rel="stylesheet" href="../../styles/effects.css">
+  <link rel="stylesheet" href="../../styles/globalMedia.css">
 
   <title>Kenzie Empresas - Cadastro</title>
 </head>
@@ -15,12 +17,17 @@
 
   <div class="borderLine">
     <div class="containerDiv">
+      <div class="redirectDiv mobile hidden">
+        <button class="backToLogin defaultBtn whiteBtn redirect">Login</button>
+        <button class="backToRegister defaultBtn blueBtn redirect">Cadastro</button>
+      </div>
       <header class="hContainer">
         <h1 class="title"><span class="logo"></span>Kenzie Empresas</h1>
-        <div class="redirect">
-          <button class="backToLogin defaultBtn whiteBtn">Home</button>
-          <button class="backToRegister defaultBtn blueBtn">Login</button>
+        <div class="redirectDiv desktop">
+          <button class="backToLogin defaultBtn whiteBtn redirect">Home</button>
+          <button class="backToRegister defaultBtn blueBtn redirect">Login</button>
         </div>
+        <img class="closeMenuIcon" src="../../assets/icons/menuListIcon.svg" alt="">
       </header>
     </div>
   </div>

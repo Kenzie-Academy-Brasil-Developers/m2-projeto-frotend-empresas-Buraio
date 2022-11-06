@@ -11,18 +11,20 @@ body {
   background-image: url('../assets/img/companyImg.png');
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
+  z-index: 0;
 }
 
 .mContainer {
   height: 100%;
-  padding-top: 145px;
+  padding-top: 28px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
 }
 
 .formContainer p {
-  margin-top: 10px;
+  margin-top: 15px;
   text-align: center;
   font-size: var(--font-size-1);
   font-weight: var(--font-weight-1);

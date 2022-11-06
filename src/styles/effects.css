@@ -1,0 +1,19 @@
+@keyframes openMenu {
+  0% {
+    z-index: -1;
+    top: 0;
+  }
+
+  100% {
+    top: 80px;
+  }
+}
+
+@keyframes closeMenu {
+  0% {
+    top: 80px;
+  }
+  100% {
+    top: 0;
+  }
+}

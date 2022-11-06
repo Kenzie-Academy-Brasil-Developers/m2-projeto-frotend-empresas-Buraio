@@ -7,30 +7,37 @@
 
   <link rel="stylesheet" href="./globalStyles.css">
   <link rel="stylesheet" href="./src/styles/homePage.css">
+  <link rel="stylesheet" href="./src/styles/effects.css">
+  <link rel="stylesheet" href="./src/styles/globalMedia.css">
 
   <title>Kenzie Empresas</title>
 </head>
 <body>
 
   <div class="borderLine">
-    <div class="containerDiv">
+    <div class="containerDiv headerContainer">
+      <div class="redirectDiv mobile">
+        <button class="backToLogin defaultBtn whiteBtn redirect">Login</button>
+        <button class="backToRegister defaultBtn blueBtn redirect">Cadastro</button>
+      </div>
       <header class="hContainer">
         <h1 class="title"><span class="logo"></span>Kenzie Empresas</h1>
-        <div class="redirectDiv">
+        <div class="redirectDiv desktop">
           <button class="backToLogin defaultBtn whiteBtn redirect">Login</button>
           <button class="backToRegister defaultBtn blueBtn redirect">Cadastro</button>
         </div>
+        <img class="closeMenuIcon" src="./src/assets/icons/menuListIcon.svg" alt="">
       </header>
     </div>
   </div>
 
   <div class="containerDiv">
-    <main class="mContainer">
+    <main class="mContainer home">
       <div class="container left">
         <img class="bannerImg" src="./src/assets/img/companyImg.png" alt="Imagem de uma sala onde três homens estão reunidos em uma mesa com papéis">
       </div>
     <div class="container right">
-      <select id="sectorSelect" name="sector">
+      <select id="sectorSelect" class="blueBtn" name="sector">
         <option value="" selected>Selecionar Setor</option>
       </select>
       <ul class="companyList">
