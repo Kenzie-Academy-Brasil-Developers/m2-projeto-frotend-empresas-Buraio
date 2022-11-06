@@ -1,28 +1,29 @@
 import { dynamicModal } from "../adminModal.js";
 import { apiDelete } from "../adminModalApi/deleteDepartment.js";
 import { getAllDepartments } from "../adminPage/adminDepartment.js";
-import { token } from "../adminPage/getAccount.js";
+import { validAdminToken } from "../../pages/adminPage/index.js";
 
 async function deleteDepartment() {
 
   setTimeout(() => {
+
     const deleteBtnArray = document.querySelectorAll('.deleteDepartment');
     deleteBtnArray.forEach(button => {
+
       button.addEventListener('click', () => {
 
         const parentId = button.parentElement.getAttribute('data-uuid');
-        console.log(parentId)
+        const modalContainer = dynamicModal();
+        deleteModal(modalContainer);
+        const modalBack = document.querySelector('.divBack');
 
         identifyDepartment(parentId);
 
-        const container = dynamicModal();
-        deleteModal(container);
+        modalContainer.addEventListener('submit', (e) => {
 
-        const submitBtn = document.querySelector('.submitBtn');
-        const modalBack = document.querySelector('.divBack');
+          e.preventDefault();
 
-        submitBtn.addEventListener('click', () => {
-          apiDelete(token.token, parentId);
+          apiDelete(validAdminToken, parentId);
           modalBack.remove();
         })
       })
@@ -50,9 +51,8 @@ function deleteModal(parent) {
 async function identifyDepartment(id) {
 
   const departmentName = document.querySelector('.nameSpan');
-  console.log(departmentName)
-  const departmentArray = await getAllDepartments(JSON.parse(localStorage.getItem('token')).token);
-  console.log(departmentArray)
+  const departmentArray = await getAllDepartments(validAdminToken);
+
   departmentArray.forEach(department => {
 
     if (department.id === id) {

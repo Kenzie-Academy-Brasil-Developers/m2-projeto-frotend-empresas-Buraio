@@ -1,7 +1,7 @@
 import { dynamicModal } from "../adminModal.js";
 import { apiDeleteUser } from "../adminModalApi/deleteUser.js";
-import { token } from "../adminPage/getAccount.js";
 import { deleteModal } from "./deleteDepartment.js";
+import { validAdminToken } from "../../pages/adminPage/index.js";
 
 export async function deleteDepartment() {
 
@@ -11,16 +11,14 @@ export async function deleteDepartment() {
       button.addEventListener('click', () => {
 
         const parentId = button.parentElement.getAttribute('data-uuid');
-        console.log(parentId)
-
-        const container = dynamicModal();
-        deleteModal(container);
-
-        const submitBtn = document.querySelector('.submitBtn');
+        const modalContainer = dynamicModal();
+        deleteModal(modalContainer);
         const modalBack = document.querySelector('.divBack');
 
-        submitBtn.addEventListener('click', () => {
-          apiDeleteUser(token.token, parentId);
+        modalContainer.addEventListener('submit', (e) => {
+
+          e.preventDefault();
+          apiDeleteUser(validAdminToken, parentId);
           modalBack.remove();
         })
       })
@@ -28,4 +26,4 @@ export async function deleteDepartment() {
   }, 300)
 }
 
-deleteDepartment()
+deleteDepartment();

@@ -3,7 +3,7 @@ import { registerWithApi } from './adminPage/accountApi.js';
 const form = document.querySelector('.formContainer');
 const inputs = document.querySelectorAll('.inputData');
 
-export function registerUser() {
+function registerUser() {
 
   const [ name, email, password, expLevel ] = inputs;
   form.addEventListener('submit', async (e) => {
@@ -23,4 +23,4 @@ export function registerUser() {
   })
 }
 
-export { form, inputs };
+export { form, inputs, registerUser };

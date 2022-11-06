@@ -3,7 +3,16 @@ import { deleteDepartment } from './adminModal/deleteDepartment.js';
 import { updateDepartment } from './adminModal/editDepartment.js';
 import { readDepartment } from './adminModal/readDepartment.js';
 
-function dynamicModal() {
+async function crudCallFunction() {
+
+  createDepartment();
+  readDepartment();
+  updateDepartment();
+  deleteDepartment();
+
+}
+
+const dynamicModal = () => {
 
   const divBack       = document.createElement('div');
   const divContainer  = document.createElement('form');
@@ -13,26 +22,17 @@ function dynamicModal() {
   divContainer.classList.add('divContainer');
   closeModalBtn.classList.add('closeModal');
 
+  closeModalBtn.src = '../../assets/icons/xIcon.svg'
+
   divContainer.appendChild(closeModalBtn);
   divBack.appendChild(divContainer);
   document.body.appendChild(divBack);
-
-  closeModalBtn.src = '../../assets/icons/xIcon.svg'
 
   closeModalBtn.addEventListener('click', () => {
     divBack.remove();
   })
 
   return divContainer;
-}
-
-async function crudCallFunction() {
-
-  createDepartment();
-  readDepartment();
-  updateDepartment();
-  deleteDepartment();
-
 }
 
 export { dynamicModal, crudCallFunction };

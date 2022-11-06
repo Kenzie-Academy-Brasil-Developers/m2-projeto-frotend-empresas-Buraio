@@ -1,7 +1,52 @@
-import { companyList } from '../../pages/homePage/index.js';
 import { getAllSectors, getCompaniesBySector } from "./homePageApi.js";
+import { companyArr } from "../../pages/homePage/index.js";
 
-function companyCard(obj) {
+function renderCards(arr) {
+
+  const companyList = document.querySelector('.companyList');
+
+  if (companyList) {
+    companyList.innerHTML = '';
+    arr.forEach(company => {
+      const card = companyCard(company);
+      companyList.appendChild(card);
+    })
+  }
+}
+
+async function sectorSelect() {
+
+  const selectInput = document.querySelector('#sectorSelect');
+  if (selectInput) {
+    const sectorArr = await getAllSectors();
+    sectorArr.forEach(sector => {
+  
+      const sectorOption = document.createElement('option');
+      sectorOption.innerText = sector.description;
+  
+      selectInput.appendChild(sectorOption);
+  
+    });
+    filterCompaniesBySector(selectInput, companyArr);
+  }
+}
+
+function filterCompaniesBySector(input, mainArr) {
+
+  input.addEventListener('change', async (e) => {
+
+    const selectValue = e.target.value;
+    if (selectValue === '') {
+      renderCards(mainArr);
+    }
+    else {
+      const filteredCompanyArr = await getCompaniesBySector(selectValue);
+      renderCards(filteredCompanyArr);
+    }
+  })
+}
+
+const companyCard = (obj) => {
 
   const card            = document.createElement('li');
   const companyName     = document.createElement('h2')
@@ -22,41 +67,4 @@ function companyCard(obj) {
 
 }
 
-function renderCards(list, arr) {
-
-  list.innerHTML = '';
-  arr.forEach(company => {
-    const card = companyCard(company);
-    list.appendChild(card);
-  })
-}
-
-async function sectorSelect(input) {
-
-  const sectorArr = await getAllSectors();
-  sectorArr.forEach(sector => {
-
-    const sectorOption = document.createElement('option');
-    sectorOption.innerText = sector.description;
-
-    input.appendChild(sectorOption);
-
-  });
-}
-
-function filterCompaniesBySector(input, mainArr) {
-
-  input.addEventListener('change', async (e) => {
-
-    const selectValue = e.target.value;
-    if (selectValue === '') {
-      renderCards(mainArr);
-    }
-    else {
-      const filteredCompanyArr = await getCompaniesBySector(selectValue);
-      renderCards(companyList, filteredCompanyArr);
-    }
-  })
-}
-
-export { renderCards, sectorSelect, filterCompaniesBySector }
+export { renderCards, sectorSelect, filterCompaniesBySector };

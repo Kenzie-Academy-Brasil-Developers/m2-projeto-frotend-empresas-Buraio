@@ -1,17 +1,19 @@
 import { getAllDepartments } from './adminDepartment.js';
 import { getAllUsers } from './adminUsers.js';
+import { validAdminToken } from '../../pages/adminPage/index.js';
 
-const token = JSON.parse(localStorage.getItem('token'));
 const userList       = document.querySelector('#userList');
 const departmentList = document.querySelector('#departments');
 
 async function getUserData() {
 
-  if (token) {
-    const userArr = await getAllUsers(token.token)
-    const departmentArr = await getAllDepartments(token.token);
+  if (validAdminToken) {
+
+    const userArr = await getAllUsers(validAdminToken)
+    const departmentArr = await getAllDepartments(validAdminToken);
     renderUserCards(userList, userArr);
-    renderDepartmentCards(departmentList, departmentArr);
+    renderDepartmentCards(departmentArr);
+
   }
 }
 
@@ -99,16 +101,16 @@ function departmentCard(obj) {
   return card;
 }
 
-function renderDepartmentCards(list, arr) {
+function renderDepartmentCards(arr) {
 
-  list.innerHTML = '';
+  departmentList.innerHTML = '';
   arr.forEach(department => {
 
     const card = departmentCard(department);
     if (card) {
-      list.append(card);
+      departmentList.append(card);
     }
   })
 }
 
-export { token, departmentList, getUserData, renderDepartmentCards };
+export { departmentList, getUserData, renderDepartmentCards };

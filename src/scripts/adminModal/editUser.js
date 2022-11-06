@@ -1,6 +1,6 @@
 import { dynamicModal } from "../adminModal.js";
 import { apiEditUser } from "../adminModalApi/editUser.js";
-import { token } from "../adminPage/getAccount.js";
+import { validAdminToken } from "../../pages/adminPage/index.js";
 
 export async function updateUser() {
 
@@ -10,27 +10,25 @@ export async function updateUser() {
     editBtnArray.forEach(button => {
 
       button.addEventListener('click', () => {
-        const container = dynamicModal();
-        updateModal(container);
 
-        const form = document.querySelector('.divContainer');
+        const modalContainer = dynamicModal();
+        updateModal(modalContainer);
+
         const typeSelect = document.querySelector('#typeSelect');
         const expLevelSelect = document.querySelector('#expLevelSelect');
 
         const parentId = button.parentElement.getAttribute('data-uuid');
 
         console.log(parentId)
-        form.addEventListener('submit', (e) => {
+        modalContainer.addEventListener('submit', (e) => {
 
           e.preventDefault();
 
           const userData = {};
-
           userData.kind_of_work = typeSelect.value;
           userData.professional_level = expLevelSelect.value;
 
-          apiEditUser(token.token, parentId, userData);
-
+          apiEditUser(validAdminToken.token, parentId, userData);
         })
       })
     })
@@ -68,7 +66,6 @@ function updateModal(parent) {
     <option value="pleno">Pleno</option>
     <option value="sênior">Sênior</option>
   `)
-
 
   parent.append(modalHeading, typeOfWork, userExpLevel, submitBtn);
 

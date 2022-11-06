@@ -1,11 +1,8 @@
-import { apiUserProfile, editUserProfile, getCoworkers, loggedUserDepartment } from "./getApi.js";
+import { editUserProfile } from "./getApi.js";
 import { dynamicModal } from "../adminModal.js";
-import { apiEditUser } from "../adminModalApi/editUser.js";
+import { validUserToken, loggedUser } from "../../pages/userPage/index.js";
 
-const token = JSON.parse(localStorage.getItem('token')).token;
-const loggedUser = await apiUserProfile(token);
-
-const userInfo = () => {
+function userInfo() {
 
   const editUserInfoBtn = document.querySelector('.editInfoBtn');
 
@@ -18,16 +15,12 @@ const userInfo = () => {
     modalContainer.addEventListener('submit', (e) => {
 
       e.preventDefault();
-
       const userDataBody = {};
       userDataBody.username = userNameEditInput.value;
       userDataBody.email    = emailEditInput.value;
       userDataBody.password = `${passwordEditInput.value}`;
 
-      console.log(userDataBody);
-
-      editUserProfile(token, userDataBody);
-
+      editUserProfile(validUserToken, userDataBody);
       getUserInfo();
 
       setTimeout(() => {
@@ -67,13 +60,12 @@ const editUserModal = (container) => {
 
 }
 
-async function getUserInfo() {
+const getUserInfo = async () => {
 
   const userNameHeading = document.querySelector('.userName');
   const userEmailSpan   = document.querySelector('.userEmail');
   const userExpSpan     = document.querySelector('.userExp');
   const workingType     = document.querySelector('.workingType');
-
 
   userNameHeading.innerText = loggedUser.username;
   userEmailSpan.innerText   = loggedUser.email;
@@ -82,45 +74,17 @@ async function getUserInfo() {
   const workingTypeIsTrue = !!loggedUser.kind_of_work;
 
   if (expIsTrue) {
-    userExpSpan.innerText     = loggedUser.professional_level;
+    userExpSpan.innerText = loggedUser.professional_level;
   }
   if (workingTypeIsTrue) {
-    workingType.innerText     = loggedUser.kind_of_work;
+    workingType.innerText = loggedUser.kind_of_work;
   }
 }
 
-async function renderCoworkers() {
-
-  const userProfileCompanyHeader = document.querySelector('.companyHeader');
-  const coworkerList = document.querySelector('#coworkerList');
-
-  const departmentUuid    = loggedUser.department_uuid;
-  const currentDepartment = await loggedUserDepartment(token);
-
-  const coworkersArray    = await getCoworkers(token);
-  coworkersArray.forEach(department => {
-
-    if (departmentUuid === department.uuid) {
-
-      userProfileCompanyHeader.innerText = `${currentDepartment.name} - ${department.name}`;
-
-      department.users.forEach(user => {
-
-        const userContainer = document.createElement('li');
-        const userNameHeading = document.createElement('h3');
-        const userExpLevel    = document.createElement('span');
-
-        userNameHeading.innerText = user.username;
-        userExpLevel.innerText = user.professional_level;
-
-        userContainer.append(userNameHeading, userExpLevel);
-        coworkerList.appendChild(userContainer);
-
-      })
-    }
-  });
+const removeModal = (element) => {
+  setTimeout(() => {
+    element.remove()
+  }, 500);
 }
-
-renderCoworkers();
 
 export { getUserInfo, userInfo };

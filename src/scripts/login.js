@@ -12,15 +12,12 @@ export function loginUser() {
     loginData.email = email.value;
     loginData.password = password.value;
 
-    const token = await loginWithApi(loginData);
-    console.log(token)
+    const loginToken = await loginWithApi(loginData);
 
-    if (!token.error) {
-      localStorage.setItem('token', JSON.stringify(token));
+    if (!loginToken.error) {
+      localStorage.setItem('token', JSON.stringify(loginToken));
   
-      const accountType = await verifyAdmin(token.token);
-  
-      console.log(accountType)
+      const accountType = await verifyAdmin(loginToken.token);
   
       if (accountType.is_admin === true) {
         location.replace('../adminPage/index.html');

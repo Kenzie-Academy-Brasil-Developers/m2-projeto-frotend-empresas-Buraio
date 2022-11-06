@@ -1,6 +1,8 @@
 import { dynamicModal } from "../adminModal.js";
+import { getOutOfWorkApi } from "../adminModalApi/readDepartment.js";
+import { validAdminToken } from "../../pages/adminPage/index.js";
 
-export async function readDepartment() {
+export const readDepartment = async () => {
 
   setTimeout(() => {
     const readBtnArray = document.querySelectorAll('.visualize')
@@ -9,13 +11,16 @@ export async function readDepartment() {
       button.addEventListener('click', () => {
   
         const container = dynamicModal();
-        readModal(container);
+        const returnUserSelect = readModal(container);
+
+        outOfWorkUsers(returnUserSelect);
+
       })
     })
   }, 300)
 }
 
-function readModal(parent) {
+const readModal = (parent) => {
 
   const departmentName = document.createElement('h3');
   const infoDiv        = document.createElement('div');
@@ -47,4 +52,18 @@ function readModal(parent) {
 
   parent.append(departmentName, infoDiv, inputDiv, userList);
 
+  return userSelect;
+
+}
+
+const outOfWorkUsers = async (element) => {
+
+  const outOfWorkUserArray = await getOutOfWorkApi(validAdminToken);
+  outOfWorkUserArray.forEach(user => {
+
+    const userOption = document.createElement('option');
+    userOption.innerText = user.username;
+    element.appendChild(userOption);
+
+  })
 }
