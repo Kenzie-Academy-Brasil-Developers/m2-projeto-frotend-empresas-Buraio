@@ -3,14 +3,13 @@ import { apiCreate } from "../adminModalApi/createDepartment.js";
 import { selectCompany } from "../adminPage/adminDepartment.js";
 import { validAdminToken } from "../../pages/adminPage/index.js";
 
-export async function createDepartment() {
+async function createDepartment() {
 
   const createNewDepartmentBtn = document.querySelector('.newDepartment');
   createNewDepartmentBtn.addEventListener('click', () => {
 
     const modalContainer = dynamicModal();
     createModal(modalContainer);
-    const modalBack = document.querySelector('.divBack');
 
     const modalCompanySelect = document.querySelector('#modalSelect');
     selectCompany(modalCompanySelect);
@@ -29,12 +28,12 @@ export async function createDepartment() {
       };
 
       apiCreate(validAdminToken, userData);
-      modalBack.remove();
+      removeModal(modalContainer);
     })
   })
 }
 
-function createModal(parent) {
+const createModal = (parent) => {
 
   const modalHeading      = document.createElement('h3');
   const departmentName    = document.createElement('input');
@@ -65,3 +64,14 @@ function createModal(parent) {
   parent.append(modalHeading, departmentName, departmentDesc, departmentCompany, submitBtn);
 
 }
+
+const removeModal = (container) => {
+
+  const modalBack = document.querySelector('.divBack');
+  setTimeout(() => {
+    container.remove()
+    modalBack.classList.add('hidden');
+  }, 500);
+};
+
+export { createDepartment, removeModal };

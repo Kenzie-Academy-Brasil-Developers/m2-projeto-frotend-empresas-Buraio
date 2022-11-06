@@ -1,6 +1,7 @@
 import { dynamicModal } from "../adminModal.js";
 import { getOutOfWorkApi } from "../adminModalApi/readDepartment.js";
 import { validAdminToken } from "../../pages/adminPage/index.js";
+import { removeModal } from "./createDepartment.js";
 
 export const readDepartment = async () => {
 
@@ -10,11 +11,22 @@ export const readDepartment = async () => {
   
       button.addEventListener('click', () => {
   
-        const container = dynamicModal();
-        const returnUserSelect = readModal(container);
+        const modalContainer = dynamicModal();
+        const returnUserSelect = readModal(modalContainer);
+
+        
 
         outOfWorkUsers(returnUserSelect);
 
+
+
+        modalContainer.addEventListener('submit', async () => {
+
+
+
+          removeModal(modalContainer);
+
+        })
       })
     })
   }, 300)
@@ -66,4 +78,4 @@ const outOfWorkUsers = async (element) => {
     element.appendChild(userOption);
 
   })
-}
+};

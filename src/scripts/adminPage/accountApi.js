@@ -1,60 +1,42 @@
 import { baseUrl, noTokenEndpoints } from '../homePage/homePageApi.js';
 import { headers } from '../../pages/homePage/index.js';
 
-async function registerWithApi(body) {
+const registerWithApi = async (body) => {
 
-  try {
+  const request = await fetch(`${baseUrl}${noTokenEndpoints.register}`, {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify(body)
+  })
 
-    const request = await fetch(`${baseUrl}${noTokenEndpoints.register}`, {
-      method: 'POST',
-      headers: headers,
-      body: JSON.stringify(body)
-    })
-
-    const response = await request.json();
-    return response;
-  }
-  catch (err) {
-    console.log(err);
-  }
+  const response = await request.json();
+  return response;
 }
 
-async function loginWithApi(body) {
+const loginWithApi = async (body) => {
 
-  try {
+  const request = await fetch(`${baseUrl}${noTokenEndpoints.login}`, {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify(body)
+  })
 
-    const request = await fetch(`${baseUrl}${noTokenEndpoints.login}`, {
-      method: 'POST',
-      headers: headers,
-      body: JSON.stringify(body)
-    })
-
-    const response = await request.json();
-    return response;
-  }
-  catch (err) {
-    console.log(err);
-  }
+  const response = await request.json();
+  return response;
 }
 
-async function verifyAdmin(token) {
+const verifyAdmin = async (token) => {
 
-  try {
+  const request = await fetch(`${baseUrl}${noTokenEndpoints.verifyAdmin}`, {
+    method: 'GET', 
+    headers: {
+      headers,
+      'Authorization': `Bearer ${token}`
+    }
+  })
 
-    const request = await fetch(`${baseUrl}${noTokenEndpoints.verifyAdmin}`, {
-      method: 'GET', 
-      headers: {
-        headers,
-        'Authorization': `Bearer ${token}`
-      }
-    })
-
-    const response = await request.json();
-    return response;
-  }
-  catch (err) {
-    console.log(err)
-  }
+  const response = await request.json();
+  return response;
 }
 
 export { registerWithApi, loginWithApi, verifyAdmin };

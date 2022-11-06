@@ -1,8 +1,7 @@
+import { validAdminToken } from "../../pages/adminPage/index.js";
 import { dynamicModal } from "../adminModal.js";
 import { apiEditDepartment } from "../adminModalApi/editDepartment.js";
 import { getAllDepartments } from "../adminPage/adminDepartment.js";
-
-const token = JSON.parse(localStorage.getItem('token'));
 
 export async function updateDepartment() {
 
@@ -15,11 +14,12 @@ export async function updateDepartment() {
       
       button.addEventListener('click', async () => {
 
-        const container = dynamicModal();
-        editModal(container);
+        const modalContainer = dynamicModal();
+        editModal(modalContainer);
+        const modalBack = document.querySelector('.divBack')
 
         const textarea = document.querySelector('#descriptionTextarea');
-        const departmentArray = await getAllDepartments(token.token);
+        const departmentArray = await getAllDepartments(validAdminToken);
 
         departmentArray.forEach(department => {
           if (department.uuid === parentId) {
@@ -27,15 +27,16 @@ export async function updateDepartment() {
           }
         })
 
-        const form = document.querySelector('.divContainer');
-        form.addEventListener('submit', async (e) => {
+        modalContainer.addEventListener('submit', async (e) => {
 
           e.preventDefault();
 
           const data = {};
           data.description = textarea.value;
 
-          apiEditDepartment(token.token, parentId, data);
+          apiEditDepartment(validAdminToken, parentId, data);
+
+          modalBack.remove();
         })
       })
     })

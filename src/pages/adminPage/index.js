@@ -4,6 +4,7 @@ import { getUserData } from '../../scripts/adminPage/getAccount.js';
 import { updateUser } from "../../scripts/adminModal/editUser.js";
 import { crudCallFunction } from '../../scripts/adminModal.js'
 import { adminCompanySelect, selectCompany } from "../../scripts/adminPage/adminDepartment.js";
+import { deleteUser } from "../../scripts/adminModal/deleteUser.js";
 
 const validAdminToken = validateToken();
 
@@ -16,5 +17,7 @@ selectCompany(adminCompanySelect);
 crudCallFunction();
 
 updateUser();
+
+deleteUser();
 
 export {validAdminToken};

@@ -14,11 +14,11 @@ async function crudCallFunction() {
 
 const dynamicModal = () => {
 
-  const divBack       = document.createElement('div');
+  const divBack       = document.querySelector('.divBack');
   const divContainer  = document.createElement('form');
   const closeModalBtn = document.createElement('img');
 
-  divBack.classList.add('divBack');
+  divBack.classList.remove('hidden');
   divContainer.classList.add('divContainer');
   closeModalBtn.classList.add('closeModal');
 
@@ -26,10 +26,10 @@ const dynamicModal = () => {
 
   divContainer.appendChild(closeModalBtn);
   divBack.appendChild(divContainer);
-  document.body.appendChild(divBack);
 
   closeModalBtn.addEventListener('click', () => {
-    divBack.remove();
+    divContainer.remove();
+    divBack.classList.add('hidden');
   })
 
   return divContainer;
