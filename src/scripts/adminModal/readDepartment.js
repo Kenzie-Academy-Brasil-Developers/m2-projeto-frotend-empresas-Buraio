@@ -2,6 +2,10 @@ import { dynamicModal } from "../adminModal.js";
 import { getOutOfWorkApi } from "../adminModalApi/readDepartment.js";
 import { validAdminToken } from "../../pages/adminPage/index.js";
 import { removeModal } from "./createDepartment.js";
+import { getAllDepartments } from "../adminPage/adminDepartment.js";
+import { getAllUsers } from "../adminPage/adminUsers.js";
+import { listDepartmentUsers } from "../adminReadModal/dismissUser.js";
+import { hireUser } from "../adminReadModal/hireUser.js";
 
 export const readDepartment = async () => {
 
@@ -9,30 +13,50 @@ export const readDepartment = async () => {
     const readBtnArray = document.querySelectorAll('.visualize')
     readBtnArray.forEach(button => {
   
-      button.addEventListener('click', () => {
-  
-        const modalContainer = dynamicModal();
-        const returnUserSelect = readModal(modalContainer);
+      button.addEventListener('click', async () => {
 
-        
+        const parentId = button.parentElement.getAttribute('data-uuid');
+        console.log(parentId)
+
+        const modalContainer = dynamicModal();
+        const returnUserSelect = readModal(modalContainer, parentId);
+
+        const departmentArray = await getAllDepartments(validAdminToken)
+
+        departmentArray.forEach(department => {
+
+          if (department.uuid === parentId) {
+            renderDepartmentInfo(department);
+          }
+        })
 
         outOfWorkUsers(returnUserSelect);
 
+        const userList = document.querySelector('#modalUserList');
+        const allUserArray = await getAllUsers(validAdminToken);
+        console.log(allUserArray)
 
+        allUserArray.forEach(user => {
 
-        modalContainer.addEventListener('submit', async () => {
+          if (user.department_uuid) {
+            if (user.department_uuid === parentId) {
+              listDepartmentUsers(userList, user)
+            }
+          }
 
+        })
 
+        modalContainer.addEventListener('submit', async (e) => {
 
+          e.preventDefault();
           removeModal(modalContainer);
-
         })
       })
     })
   }, 300)
 }
 
-const readModal = (parent) => {
+const readModal = (parent, parentId) => {
 
   const departmentName = document.createElement('h3');
   const infoDiv        = document.createElement('div');
@@ -46,14 +70,14 @@ const readModal = (parent) => {
 
   departmentName.classList.add('modalHeading', 'departmentName');
   infoDiv.classList.add('infoDiv');
-  departmentDesc.classList.add('departmentDesc');
-  companyName.classList.add('companyName');
+  departmentDesc.classList.add('modalDesc');
+  companyName.classList.add('modalCompanyName');
   inputDiv.classList.add('inputDiv');
   userSelect.classList.add('inputData')
   hireBtn.classList.add('submitBtn', 'greenBtn');
 
   userSelect.id = 'userSelect';
-  userList.id   = 'userList';
+  userList.id   = 'modalUserList';
 
   noValueOpt.innerText = 'Selecionar usuário';
   hireBtn.innerText = 'Contratar';
@@ -64,8 +88,15 @@ const readModal = (parent) => {
 
   parent.append(departmentName, infoDiv, inputDiv, userList);
 
-  return userSelect;
+  hireBtn.addEventListener('click', () => {
 
+    const hireUserBody = {};
+    hireUserBody.user_uuid = userSelect.value;
+    hireUserBody.department_uuid = parentId;
+
+    hireUser(validAdminToken, hireUserBody);
+  })
+  return userSelect;
 }
 
 const outOfWorkUsers = async (element) => {
@@ -75,7 +106,20 @@ const outOfWorkUsers = async (element) => {
 
     const userOption = document.createElement('option');
     userOption.innerText = user.username;
+    userOption.value     = user.uuid;
     element.appendChild(userOption);
 
   })
-};
+}
+
+const renderDepartmentInfo = (obj) => {
+
+  const modalHeading = document.querySelector('.modalHeading');
+  const modalDesc    = document.querySelector('.modalDesc');
+  const modalCompanyName = document.querySelector('.modalCompanyName');
+
+  modalHeading.innerText     = obj.name;
+  modalDesc.innerText        = obj.description;
+  modalCompanyName.innerText = obj.companies.name;
+
+}
