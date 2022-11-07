@@ -4,7 +4,6 @@ import { renderDepartmentCards } from './getAccount.js';
 import { crudCallFunction } from "../adminModal.js";
 import { validAdminToken } from "../../pages/adminPage/index.js";
 
-const adminCompanySelect = document.querySelector('#adminCompanySelect');
 function selectCompany(input) {
 
   companyArr.forEach(company => {
@@ -14,10 +13,8 @@ function selectCompany(input) {
     sectorOption.value     = company.uuid;
 
     input.appendChild(sectorOption);
-
   });
-
-  filterDepartmentByCompany(adminCompanySelect, companyArr)
+  filterDepartmentByCompany(input, companyArr)
 }
 
 const getAllDepartments = async (token) => {
@@ -25,7 +22,7 @@ const getAllDepartments = async (token) => {
   const request = await fetch(`${baseUrl}/departments`, {
     method: 'GET',
     headers: {
-      headers,
+      'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     }
   })
@@ -62,4 +59,4 @@ const filterDepartmentByCompany = (input) => {
   })
 }
 
-export { getAllDepartments, adminCompanySelect, filterDepartmentByCompany, selectCompany };
+export { getAllDepartments, filterDepartmentByCompany, selectCompany };

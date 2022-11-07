@@ -6,6 +6,7 @@ import { validAdminToken } from "../../pages/adminPage/index.js";
 async function createDepartment() {
 
   const createNewDepartmentBtn = document.querySelector('.newDepartment');
+
   createNewDepartmentBtn.addEventListener('click', () => {
 
     const modalContainer = dynamicModal();

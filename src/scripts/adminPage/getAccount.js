@@ -1,16 +1,27 @@
 import { getAllDepartments } from './adminDepartment.js';
 import { getAllUsers } from './adminUsers.js';
 import { validAdminToken } from '../../pages/adminPage/index.js';
+import { userList, departmentList  } from '../../pages/adminPage/index.js';
 
-const userList       = document.querySelector('#userList');
-const departmentList = document.querySelector('#departments');
+function renderDepartmentCards(arr) {
+
+  departmentList.innerHTML = '';
+  arr.forEach(department => {
+
+    const card = departmentCard(department);
+    if (card) {
+      departmentList.append(card);
+    }
+  })
+}
 
 async function getUserData() {
 
   if (validAdminToken) {
 
-    const userArr = await getAllUsers(validAdminToken)
     const departmentArr = await getAllDepartments(validAdminToken);
+
+    const userArr = await getAllUsers(validAdminToken)
     renderUserCards(userList, userArr);
     renderDepartmentCards(departmentArr);
 
@@ -101,16 +112,4 @@ function departmentCard(obj) {
   return card;
 }
 
-function renderDepartmentCards(arr) {
-
-  departmentList.innerHTML = '';
-  arr.forEach(department => {
-
-    const card = departmentCard(department);
-    if (card) {
-      departmentList.append(card);
-    }
-  })
-}
-
-export { departmentList, getUserData, renderDepartmentCards };
+export { getUserData, renderDepartmentCards };
