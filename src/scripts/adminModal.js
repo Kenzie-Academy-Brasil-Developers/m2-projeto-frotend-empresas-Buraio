@@ -19,8 +19,11 @@ const dynamicModal = () => {
   const closeModalBtn = document.createElement('img');
 
   divBack.classList.remove('hidden');
+  divBack.classList.add('show');
   divContainer.classList.add('divContainer');
   closeModalBtn.classList.add('closeModal');
+
+  document.body.classList.add('noScroll');
 
   closeModalBtn.src = '../../assets/icons/xIcon.svg'
 
@@ -30,6 +33,9 @@ const dynamicModal = () => {
   closeModalBtn.addEventListener('click', () => {
     divContainer.remove();
     divBack.classList.add('hidden');
+    divBack.classList.remove('show');
+
+    document.body.classList.remove('noScroll');
   })
 
   return divContainer;

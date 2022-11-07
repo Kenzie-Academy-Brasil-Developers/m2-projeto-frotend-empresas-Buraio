@@ -16,7 +16,6 @@ export const readDepartment = async () => {
       button.addEventListener('click', async () => {
 
         const parentId = button.parentElement.getAttribute('data-uuid');
-        console.log(parentId)
 
         const modalContainer = dynamicModal();
         const returnUserSelect = readModal(modalContainer, parentId);
@@ -34,7 +33,6 @@ export const readDepartment = async () => {
 
         const userList = document.querySelector('#modalUserList');
         const allUserArray = await getAllUsers(validAdminToken);
-        console.log(allUserArray)
 
         allUserArray.forEach(user => {
 
