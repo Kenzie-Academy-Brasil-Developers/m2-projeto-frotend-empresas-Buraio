@@ -1,0 +1,84 @@
+.userInfo {
+  height: 120px;
+  margin: 24px 0 44px;
+  padding: 20px 40px 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.info {
+  display: flex;
+  gap: 150px;
+}
+
+.info span {
+  font-size: var(--font-size-4);
+  font-weight: var(--font-weight-1);
+}
+
+.userInfo > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.userName {
+  font-size: var(--font-size-3);
+}
+
+.infoContainer {
+  height: 470px;
+  background-color: var(--color-6);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.infoContainer > p {
+  font-size: var(--font-size-5);
+}
+
+.companyHeader {
+  height: 78px;
+  background-color: var(--color-1);
+  color: var(--color-2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--font-size-6);
+}
+
+#colleagueList {
+  height: 390px;
+  padding: 55px;
+  display: flex;
+  justify-content: space-between;
+  align-content: space-between;
+  flex-wrap: wrap;
+  gap: 13px;
+  list-style: none;
+}
+
+.colleague {
+  width: 318px;
+  height: 76px;
+  padding: 12px 23px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid var(--color-1);
+}
+
+.colleague > h4, .colleague > span {
+  font-size: var(--font-size-7);
+}
+
+.colleague > span {
+  font-weight: var(--font-weight-1);
+}

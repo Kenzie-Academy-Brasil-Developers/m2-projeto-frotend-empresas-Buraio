@@ -1,0 +1,63 @@
+.adminHeader {
+  margin: 90px 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+#adminCompanySelect {
+  padding: 5px 30px;
+  border-radius: 15px;
+}
+
+.newDepartment {
+  padding-right: 35px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#departments, #userList {
+  height: 385px;
+  padding: 34px 56px;
+  background-color: var(--color-6);
+  display: flex;
+  justify-content: space-between;
+  gap:28px;
+  flex-wrap: wrap;
+}
+
+.mContainer > h2 {
+  margin: 70px 0 16px;
+  text-align: center;
+}
+
+.main {
+  padding-bottom: 90px;
+}
+
+.department, .user {
+  width: 490px;
+  height: 200px;
+  padding: 18px 30px;
+  background-color: var(--color-2);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.actionsDiv {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.departmentName, .userName {
+  font-size: var(--font-size-8);
+}
+
+.departmentDesc, .companyName, .userExp {
+  font-size: var(--font-size-1);
+  font-weight: 400;
+}
